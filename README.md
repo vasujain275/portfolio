@@ -14,12 +14,13 @@ Welcome to my coding journey! 🛤️ I'm a creative explorer of programming lan
 
 ## Table of Contents
 
-1. [Course Selling Web App](#course-selling-web-app)
-2. [OnePaceStremioV2](#onepacestremiov2)
-3. [Basic Todo App](#basic-todo-app)
-4. [CBSE Results 2023](#cbseresults2023)
-5. [MrDataAnalyst](#mrdataanalyst)
-6. [Robosafe](#robosafe)
+1. [course-selling-web-app](#course-selling-web-app) - [Code](https://github.com/vasujain275/course-selling-web-app) - Sell Online Courses
+2. [OnePaceStremioV2](#onepacestremiov2) - [Code](https://github.com/vasujain275/onepace-stremio-v2) - Dynamic Stremio Addon for One Pace
+3. [Basic Todo App](#basic-todo-app) - [Code](https://github.com/vasujain275/basictodo) - Manage Your Tasks
+4. [cbseResults2023](#cbseresults2023) - [Code](https://github.com/vasujain275/cbseResults2023) - Automated CBSE Result Scraper
+5. [MrDataAnalyst](#mrdataanalyst) - [Code](https://github.com/vasujain275/MrDataAnalyst) - Interactive Data Analysis Tool
+6. [Robosafe](#robosafe) - [Code](https://github.com/vasujain275/RoboSafe) - Wireless Controlled Locker with Multi-factor Authentication
+
 
 ---
 
