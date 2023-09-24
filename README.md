@@ -14,36 +14,13 @@ Welcome to my coding journey! 🛤️ I'm a creative explorer of programming lan
 
 ## Table of Contents
 
-1. [course-selling-web-app](#course-selling-web-app) - [Code](https://github.com/vasujain275/course-selling-web-app) - Sell Online Courses
-2. [OnePaceStremioV2](#onepacestremiov2) - [Code](https://github.com/vasujain275/onepace-stremio-v2) - Dynamic Stremio Addon for One Pace
-3. [Basic Todo App](#basic-todo-app) - [Code](https://github.com/vasujain275/basictodo) - Manage Your Tasks
-4. [cbseResults2023](#cbseresults2023) - [Code](https://github.com/vasujain275/cbseResults2023) - Automated CBSE Result Scraper
-5. [MrDataAnalyst](#mrdataanalyst) - [Code](https://github.com/vasujain275/MrDataAnalyst) - Interactive Data Analysis Tool
+1. [OnePaceStremioV2](#onepacestremiov2) - [Code](https://github.com/vasujain275/onepace-stremio-v2) - Dynamic Stremio Addon for One Pace
+2. [Basic Todo App](#basic-todo-app) - [Code](https://github.com/vasujain275/basictodo) - Manage Your Tasks
+3. [cbseResults2023](#cbseresults2023) - [Code](https://github.com/vasujain275/cbseResults2023) - Automated CBSE Result Scraper
+4. [MrDataAnalyst](#mrdataanalyst) - [Code](https://github.com/vasujain275/MrDataAnalyst) - Interactive Data Analysis Tool
 6. [Robosafe](#robosafe) - [Code](https://github.com/vasujain275/RoboSafe) - Wireless Controlled Locker with Multi-factor Authentication
 
 
----
-
-## Course Selling Web App - Sell Online Courses
-
-<div id="course-selling-web-app">
-A React.js web app designed to sell online courses. This app utilizes an Express.js REST API backend, MongoDB for data storage, JSON Web Tokens (JWT) and cookies for authentication, Material-UI (MUI) for design, all built in TypeScript. It also uses Axios for making API requests.
-
-### Features 📚
-
-- **Course Selling**: Create and manage online courses for sale. 📖
-- **User Authentication**: Secure user authentication using JWT and cookies. 🔐
-- **Responsive Design**: Developed using Material-UI for a modern look. 💻
-- **TypeScript**: Fully written in TypeScript for type-safe development. 📜
-- **API Integration**: Utilize Axios for making API requests. 🌐
-
-### Tech Stack 🛠️
-
-- **Frontend**: React.js with TypeScript, Material-UI
-- **Backend**: Express.js, MongoDB
-- **Authentication**: JSON Web Tokens (JWT), Cookies
-- **API Requests**: Axios
-</div>
 
 ## OnePaceStremioV2 - Dynamic Stremio Addon for One Pace
 
