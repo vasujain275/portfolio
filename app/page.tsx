@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
-      
+
       {/* About Preview Section */}
       <section className="container max-w-7xl mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -13,8 +13,8 @@ export default function Home() {
               Backend Developer & DevOps Engineer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a CSE undergrad passionate about building robust backend microservices, 
-              DevOps automation, and practical GenAI applications. Currently working on 
+              I'm a CSE undergrad passionate about building robust backend microservices,
+              DevOps automation, and practical GenAI applications. Currently working on
               secure, scalable systems and exploring advanced AI orchestration patterns.
             </p>
             <div className="grid grid-cols-2 gap-6">
@@ -44,7 +44,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className="terminal p-8 bg-card border border-border rounded-xl shadow-lg">
             <div className="flex items-center space-x-3 mb-6">
               <div className="flex space-x-2">
@@ -60,11 +60,10 @@ export default function Home() {
                 <span>cat experience.txt</span>
               </div>
               <div className="text-secondary leading-relaxed pl-6">
-                • Student Management System (Spring Boot)<br/>
-                • Bookstore API (FastAPI + Prisma)<br/>
-                • IPL RAG Chatbot (LangChain + Qdrant)<br/>
-                • Library Management System (DRDO DIPR)<br/>
-                • Open Source: talawa-api, talawa-admin
+                • ShelfWise (Spring Boot + React)<br/>
+                • Task Genie (AI Agent + Python)<br/>
+                • Open Source: talawa-api, talawa-admin<br/>
+                • CSE Undergrad (University)
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-primary font-bold">$</span>

@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const roles = [
   "Backend Developer",
-  "DevOps Engineer", 
+  "DevOps Engineer",
   "AI Engineer",
   "Full-Stack Developer"
 ];
@@ -16,7 +16,7 @@ const roles = [
 const stats = [
   { label: "Years Experience", value: "2+" },
   { label: "Projects Built", value: "15+" },
-  { label: "Technologies", value: "10+" },
+  { label: "Technologies", value: "12+" },
   { label: "Open Source", value: "5+" },
 ];
 
@@ -84,10 +84,10 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-              
+
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                Passionate about building robust backend microservices, DevOps automation, 
-                and practical GenAI applications. Currently working on secure, scalable systems 
+                Passionate about building robust backend microservices, DevOps automation,
+                and practical GenAI applications. Currently working on secure, scalable systems
                 and exploring advanced AI orchestration patterns.
               </p>
             </div>
@@ -144,7 +144,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Column - Terminal/Code Demo */}
+            {/* Right Column - Terminal/Code Demo */}
           <div className="space-y-8 lg:pl-12">
             <div className="terminal">
               <div className="flex items-center space-x-2 mb-6">
@@ -166,9 +166,9 @@ export function Hero() {
                   <span>cat skills.txt</span>
                 </div>
                 <div className="text-secondary">
-                  Backend: Java, Go, TypeScript, Python<br/>
+                  Backend: Java, Spring Boot, Python, FastAPI<br/>
                   DevOps: Docker, K8s, AWS, CI/CD<br/>
-                  AI: LangChain, RAG, Vector DBs<br/>
+                  AI: LangChain, LangGraph, RAG, OpenAI<br/>
                   Frontend: React, TypeScript, shadcn/ui
                 </div>
                 <div className="flex items-center space-x-2">
@@ -176,37 +176,35 @@ export function Hero() {
                   <span>ls projects/</span>
                 </div>
                 <div className="text-secondary">
-                  student-management-system/<br/>
-                  bookstore-api/<br/>
-                  ipl-rag-chatbot/<br/>
-                  library-management-system/
+                  shelfwise/<br/>
+                  task-genie/<br/>
+                  talawa-api/<br/>
+                  talawa-admin/
                 </div>
               </div>
             </div>
 
             {/* Quick Links */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Link 
-                href="https://ipl-chatbot.vasujain.me" 
-                target="_blank"
+              <Link
+                href="/projects/shelfwise"
                 className="flex items-center justify-between p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group"
               >
                 <div>
-                  <div className="font-semibold text-lg">IPL RAG Chatbot</div>
-                  <div className="text-sm text-muted-foreground">Live Demo</div>
+                  <div className="font-semibold text-lg">ShelfWise</div>
+                  <div className="text-sm text-muted-foreground">Library System</div>
                 </div>
-                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
-              <Link 
-                href="https://bookstore-api.vasujain.me" 
-                target="_blank"
+              <Link
+                href="/projects/task-genie"
                 className="flex items-center justify-between p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group"
               >
                 <div>
-                  <div className="font-semibold text-lg">Bookstore API</div>
-                  <div className="text-sm text-muted-foreground">Live Demo</div>
+                  <div className="font-semibold text-lg">Task Genie</div>
+                  <div className="text-sm text-muted-foreground">AI Agent Bot</div>
                 </div>
-                <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </Link>
             </div>
           </div>
@@ -214,4 +212,4 @@ export function Hero() {
       </div>
     </section>
   );
-} 
+}

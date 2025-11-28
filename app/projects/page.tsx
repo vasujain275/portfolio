@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { projects, getAllProjects, getProjectsByCategory } from "@/lib/projects";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Filter } from "lucide-react";
+import { getAllProjects, getProjectsByCategory, projects } from "@/lib/projects";
+import { ArrowRight, ExternalLink, Filter, Github } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 const categories = [
   { id: "all", name: "All Projects" },
@@ -18,7 +19,7 @@ const categories = [
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filteredProjects = selectedCategory === "all" 
+  const filteredProjects = selectedCategory === "all"
     ? getAllProjects()
     : getProjectsByCategory(selectedCategory);
 
@@ -28,7 +29,7 @@ export default function ProjectsPage() {
       <div className="text-center space-y-6 mb-16">
         <h1 className="text-4xl lg:text-5xl font-bold">My Projects</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          A collection of my work showcasing backend development, DevOps automation, 
+          A collection of my work showcasing backend development, DevOps automation,
           AI applications, and open source contributions.
         </p>
       </div>
@@ -56,16 +57,18 @@ export default function ProjectsPage() {
               {/* Header */}
               <div className="space-y-4">
                 <div className="flex items-start justify-between">
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
+                  <Link href={`/projects/${project.slug}`} className="group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-semibold">
+                      {project.title}
+                    </h3>
+                  </Link>
                   {project.featured && (
                     <Badge variant="secondary" className="text-xs">
                       Featured
                     </Badge>
                   )}
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
               </div>
@@ -91,6 +94,14 @@ export default function ProjectsPage() {
 
               {/* Actions */}
               <div className="flex items-center space-x-4 pt-6 border-t border-border">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="flex items-center space-x-2 text-sm font-medium text-primary hover:underline"
+                >
+                  <span>View Details</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <div className="flex-1" />
                 {project.github && (
                   <a
                     href={project.github}
@@ -99,7 +110,6 @@ export default function ProjectsPage() {
                     className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Github className="h-4 w-4" />
-                    <span>Code</span>
                   </a>
                 )}
                 {project.live && (
@@ -110,7 +120,6 @@ export default function ProjectsPage() {
                     className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    <span>Live</span>
                   </a>
                 )}
               </div>
@@ -153,4 +162,4 @@ export default function ProjectsPage() {
       </div>
     </div>
   );
-} 
+}
