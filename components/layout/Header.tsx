@@ -30,10 +30,9 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <span className="text-primary font-bold text-lg">V</span>
+            <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 shadow-sm group-hover:shadow-md">
+              <span className="text-primary font-bold text-xl">V</span>
             </div>
-            <span className="font-bold text-xl tracking-tight">vasu.dev</span>
           </Link>
 
           {/* Desktop Navigation */}
