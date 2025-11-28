@@ -1,14 +1,17 @@
-import { skills, experience, getSkillsByCategory } from "@/lib/experience";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { experience, getSkillsByCategory } from "@/lib/experience";
+import { Calendar, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
+import * as SiIcons from "react-icons/si";
+
+// Helper to get icon component
+const getIcon = (iconName: string) => {
+  const Icon = (SiIcons as any)[iconName];
+  return Icon ? <Icon className="h-8 w-8" /> : null;
+};
 
 export default function AboutPage() {
-  const backendSkills = getSkillsByCategory("backend");
-  const devopsSkills = getSkillsByCategory("devops");
-  const aiSkills = getSkillsByCategory("ai");
-  const frontendSkills = getSkillsByCategory("frontend");
-  const databaseSkills = getSkillsByCategory("database");
+  const categories = ["languages", "backend", "frontend", "devops", "ai", "database", "tools"];
 
   return (
     <div className="container max-w-7xl mx-auto px-4 py-20">
@@ -34,7 +37,7 @@ export default function AboutPage() {
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold">About Me</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Backend developer and DevOps engineer passionate about building robust microservices, 
+            Backend developer and DevOps engineer passionate about building robust microservices,
             AI applications, and sharing knowledge through code and writing.
           </p>
         </div>
@@ -45,17 +48,16 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold">Background</h2>
             <div className="space-y-6">
               <p className="text-muted-foreground leading-relaxed text-lg">
-                I'm Vasu Jain, a highly motivated and self-driven CSE undergrad from India, currently 
-                entering my third year. I'm passionate about backend development, DevOps, and practical 
-                GenAI applications. I am a backend and AI engineer working on robust backend microservices 
-                and agentic AI workflows.
+                I'm Vasu Jain, a highly motivated and self-driven CSE undergrad from India.
+                I specialize in building scalable backend systems, automating infrastructure with DevOps tools,
+                and creating practical AI agents.
               </p>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                I'm actively working toward that with a rigorous self-study and project schedule: 
-                2 hours of DSA daily and 3 hours dedicated to backend systems, cloud, and GenAI development.
+                Currently, I'm focused on mastering distributed systems and exploring the intersection of
+                software engineering and generative AI.
               </p>
             </div>
-            
+
             {/* Contact Info */}
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
@@ -81,21 +83,21 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold">Current Focus</h2>
             <div className="space-y-6">
               <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h3 className="font-semibold text-lg mb-3">Backend Development</h3>
+                <h3 className="font-semibold text-lg mb-3">Backend Engineering</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Building secure, scalable REST APIs and microservices using Spring Boot, FastAPI, and Go.
+                  Designing offline-first systems and secure APIs using Spring Boot and Go.
                 </p>
               </div>
               <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h3 className="font-semibold text-lg mb-3">DevOps & Cloud</h3>
+                <h3 className="font-semibold text-lg mb-3">Agentic AI</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Automating deployment workflows, containerization with Docker/K8s, and AWS infrastructure.
+                  Building stateful AI agents with LangGraph and custom tool-calling capabilities.
                 </p>
               </div>
               <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h3 className="font-semibold text-lg mb-3">AI/ML Applications</h3>
+                <h3 className="font-semibold text-lg mb-3">Infrastructure as Code</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Exploring RAG systems, LangChain, vector databases, and multi-agent orchestration patterns.
+                  Managing deployments with Docker, Kubernetes, and NixOS.
                 </p>
               </div>
             </div>
@@ -105,139 +107,62 @@ export default function AboutPage() {
         {/* Skills */}
         <div className="space-y-12">
           <h2 className="text-4xl font-bold text-center">Skills & Technologies</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Backend */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Backend</h3>
-              <div className="space-y-4">
-                {backendSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-3">
-                    <div className="flex justify-between text-base">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground">{skill.proficiency}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* DevOps */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">DevOps</h3>
-              <div className="space-y-4">
-                {devopsSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-3">
-                    <div className="flex justify-between text-base">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground">{skill.proficiency}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="space-y-12">
+            {categories.map((category) => {
+              const categorySkills = getSkillsByCategory(category);
+              if (categorySkills.length === 0) return null;
 
-            {/* AI/ML */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">AI/ML</h3>
-              <div className="space-y-4">
-                {aiSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-3">
-                    <div className="flex justify-between text-base">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground">{skill.proficiency}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
+              return (
+                <div key={category} className="space-y-6">
+                  <h3 className="text-2xl font-semibold capitalize border-b border-border pb-2">
+                    {category === "ai" ? "AI / ML" : category}
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    {categorySkills.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+                      >
+                        <div className="text-muted-foreground group-hover:text-primary transition-colors mb-3">
+                          {getIcon(skill.icon)}
+                        </div>
+                        <span className="font-medium text-center">{skill.name}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Frontend */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Frontend</h3>
-              <div className="space-y-4">
-                {frontendSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-3">
-                    <div className="flex justify-between text-base">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground">{skill.proficiency}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Database */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Database</h3>
-              <div className="space-y-4">
-                {databaseSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-3">
-                    <div className="flex justify-between text-base">
-                      <span className="font-medium">{skill.name}</span>
-                      <span className="text-muted-foreground">{skill.proficiency}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.proficiency}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Experience Timeline */}
         <div className="space-y-12">
           <h2 className="text-4xl font-bold text-center">Experience Timeline</h2>
-          
+
           <div className="space-y-8">
             {experience.map((exp, index) => (
               <div key={exp.id} className="relative">
                 <div className="flex items-start space-x-6">
-                  <div className="flex-shrink-0 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg">
+                  <div className="flex-shrink-0 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg z-10">
                     <Calendar className="h-7 w-7 text-primary-foreground" />
                   </div>
-                  <div className="flex-1 space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <Badge variant="secondary" className="text-sm">
-                        {exp.type}
+                  <div className="flex-1 space-y-4 bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <h3 className="text-xl font-semibold">{exp.title}</h3>
+                        <p className="text-primary font-medium text-lg">{exp.company}</p>
+                      </div>
+                      <Badge variant="secondary" className="w-fit text-sm">
+                        {exp.period}
                       </Badge>
                     </div>
-                    <p className="text-primary font-medium text-lg">{exp.company}</p>
-                    <p className="text-muted-foreground">{exp.period}</p>
+
                     <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-sm">
+                        <Badge key={tech} variant="outline" className="text-xs">
                           {tech}
                         </Badge>
                       ))}
@@ -245,48 +170,13 @@ export default function AboutPage() {
                   </div>
                 </div>
                 {index < experience.length - 1 && (
-                  <div className="absolute left-7 top-14 w-0.5 h-20 bg-border"></div>
+                  <div className="absolute left-7 top-14 bottom-0 w-0.5 bg-border -z-0"></div>
                 )}
               </div>
             ))}
           </div>
         </div>
-
-        {/* Certifications & Goals */}
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">Certifications (In Progress)</h3>
-            <div className="space-y-4">
-              <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h4 className="font-semibold text-lg mb-2">AWS Cloud Practitioner</h4>
-                <p className="text-muted-foreground leading-relaxed">Validating cloud computing knowledge and AWS services understanding</p>
-              </div>
-              <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h4 className="font-semibold text-lg mb-2">AWS Developer Associate</h4>
-                <p className="text-muted-foreground leading-relaxed">Demonstrating expertise in developing and maintaining applications on AWS</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">Future Goals</h3>
-            <div className="space-y-4">
-              <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h4 className="font-semibold text-lg mb-2">MLH Fellowship</h4>
-                <p className="text-muted-foreground leading-relaxed">Exploring opportunities to contribute to open source projects</p>
-              </div>
-              <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h4 className="font-semibold text-lg mb-2">LFX Mentorship</h4>
-                <p className="text-muted-foreground leading-relaxed">Seeking mentorship opportunities in the Linux Foundation ecosystem</p>
-              </div>
-              <div className="p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <h4 className="font-semibold text-lg mb-2">Google Summer of Code</h4>
-                <p className="text-muted-foreground leading-relaxed">Exploring summer internship opportunities with open source organizations</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
-} 
+}

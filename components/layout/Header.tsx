@@ -1,10 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -29,11 +29,11 @@ export function Header() {
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center shadow-lg">
-              <span className="text-primary-foreground font-bold text-lg">VJ</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+              <span className="text-primary font-bold text-lg">V</span>
             </div>
-            <span className="font-bold text-2xl">Vasu Jain</span>
+            <span className="font-bold text-xl tracking-tight">vasu.dev</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -108,4 +108,4 @@ export function Header() {
       </div>
     </header>
   );
-} 
+}
