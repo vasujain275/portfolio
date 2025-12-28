@@ -1,150 +1,56 @@
+import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Calendar, Clock, ExternalLink, Github } from "lucide-react";
+import {
+  formatDate,
+  generateBlogStaticParams,
+  getBlogPost,
+  getRelatedPosts,
+} from "@/lib/blog";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  Clock,
+  Github,
+  Linkedin,
+} from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-// This would typically come from a CMS or markdown files
-const blogPosts = {
-  "backend-architecture-patterns": {
-    title: "Backend Architecture Patterns for Scalable Systems",
-    date: "2024-01-15",
-    readTime: "8 min read",
-    tags: ["Backend", "Architecture", "Microservices"],
-    content: `
-# Backend Architecture Patterns for Scalable Systems
-
-Building robust, scalable backend systems requires careful consideration of architecture patterns. In this post, I'll explore some of the most effective patterns I've used in my projects.
-
-## Microservices Architecture
-
-Microservices have become the go-to pattern for building scalable applications. Here's how I approach them:
-
-\`\`\`java
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
-
-    @Autowired
-    private UserService userService;
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.findById(id));
-    }
+// Generate static params for all blog posts
+export function generateStaticParams() {
+  return generateBlogStaticParams();
 }
-\`\`\`
 
-## Event-Driven Architecture
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getBlogPost(slug);
 
-For systems that need to handle high throughput, event-driven architecture provides excellent scalability:
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
 
-\`\`\`python
-from fastapi import FastAPI, BackgroundTasks
-from pydantic import BaseModel
-
-app = FastAPI()
-
-class OrderEvent(BaseModel):
-    order_id: str
-    user_id: str
-    items: list
-
-@app.post("/orders")
-async def create_order(order: OrderEvent, background_tasks: BackgroundTasks):
-    # Process order asynchronously
-    background_tasks.add_task(process_order, order)
-    return {"status": "accepted"}
-\`\`\`
-
-## Database Design Patterns
-
-Proper database design is crucial for performance:
-
-\`\`\`sql
--- Use indexes for frequently queried columns
-CREATE INDEX idx_user_email ON users(email);
-
--- Implement proper foreign key constraints
-ALTER TABLE orders
-ADD CONSTRAINT fk_user_id
-FOREIGN KEY (user_id) REFERENCES users(id);
-\`\`\`
-
-## Conclusion
-
-These patterns have helped me build systems that can handle thousands of concurrent users while maintaining code quality and developer productivity.
-    `,
-  },
-  "devops-best-practices": {
-    title: "DevOps Best Practices: From Code to Production",
-    date: "2024-01-10",
-    readTime: "12 min read",
-    tags: ["DevOps", "CI/CD", "Docker"],
-    content: `
-# DevOps Best Practices: From Code to Production
-
-A comprehensive guide to implementing CI/CD pipelines, containerization strategies, and monitoring solutions.
-
-## CI/CD Pipeline Setup
-
-Here's how I structure my GitHub Actions workflows:
-
-\`\`\`yaml
-name: CI/CD Pipeline
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run tests
-        run: |
-          npm install
-          npm test
-\`\`\`
-
-## Docker Best Practices
-
-Containerization is key to consistent deployments:
-
-\`\`\`dockerfile
-# Multi-stage build for optimization
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=builder /app/node_modules ./node_modules
-COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]
-\`\`\`
-
-## Monitoring and Logging
-
-Proper monitoring is essential for production systems:
-
-\`\`\`python
-import logging
-from prometheus_client import Counter, Histogram
-
-# Metrics
-request_counter = Counter('http_requests_total', 'Total HTTP requests')
-request_duration = Histogram('http_request_duration_seconds', 'HTTP request duration')
-
-# Logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-\`\`\`
-    `,
-  },
-};
+  return {
+    title: `${post.frontmatter.title} | Vasu Jain`,
+    description: post.frontmatter.excerpt,
+    keywords: post.frontmatter.tags.join(", "),
+    openGraph: {
+      title: post.frontmatter.title,
+      description: post.frontmatter.excerpt,
+      type: "article",
+      publishedTime: post.frontmatter.date,
+      authors: [post.frontmatter.author || "Vasu Jain"],
+      tags: post.frontmatter.tags,
+    },
+  };
+}
 
 export default async function BlogPostPage({
   params,
@@ -152,21 +58,13 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = blogPosts[slug as keyof typeof blogPosts];
+  const post = getBlogPost(slug);
 
   if (!post) {
-    return (
-      <div className="container py-20 text-center">
-        <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
-        <p className="text-muted-foreground mb-8">
-          The blog post you're looking for doesn't exist.
-        </p>
-        <Link href="/blog" className="text-primary hover:underline">
-          ← Back to Blog
-        </Link>
-      </div>
-    );
+    notFound();
   }
+
+  const relatedPosts = getRelatedPosts(slug, 3);
 
   return (
     <div className="container py-20">
@@ -175,68 +73,95 @@ export default async function BlogPostPage({
         <Link
           href="/blog"
           className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+          aria-label="Back to all blog posts"
         >
-          <ArrowLeft className="h-4 w-4 mr-2" />
+          <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
           Back to Blog
         </Link>
 
         {/* Header */}
         <header className="mb-8">
-          <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-            <Calendar className="h-4 w-4" />
-            <span>{new Date(post.date).toLocaleDateString()}</span>
-            <span>•</span>
-            <Clock className="h-4 w-4" />
+          <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground mb-4">
+            <Calendar className="h-4 w-4" aria-hidden="true" />
+            <time dateTime={post.frontmatter.date}>
+              {formatDate(post.frontmatter.date)}
+            </time>
+            <span aria-hidden="true">•</span>
+            <Clock className="h-4 w-4" aria-hidden="true" />
             <span>{post.readTime}</span>
+            {post.frontmatter.author && (
+              <>
+                <span aria-hidden="true">•</span>
+                <span>By {post.frontmatter.author}</span>
+              </>
+            )}
           </div>
-          <h1 className="text-3xl lg:text-4xl font-bold mb-4">{post.title}</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-4">
+            {post.frontmatter.title}
+          </h1>
           <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
-                {tag}
-              </Badge>
+            {post.frontmatter.tags.map((tag) => (
+              <Link key={tag} href={`/blog/tag/${encodeURIComponent(tag)}`}>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  {tag}
+                </Badge>
+              </Link>
             ))}
           </div>
         </header>
 
         {/* Content */}
-        <article className="prose prose-lg max-w-none">
-          <div
-            className="space-y-6 text-muted-foreground leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: post.content
-                .split("\n")
-                .map((line) => {
-                  if (line.startsWith("# ")) {
-                    return `<h2 class="text-2xl font-bold text-foreground mt-8 mb-4">${line.slice(
-                      2
-                    )}</h2>`;
-                  }
-                  if (line.startsWith("## ")) {
-                    return `<h3 class="text-xl font-semibold text-foreground mt-6 mb-3">${line.slice(
-                      3
-                    )}</h3>`;
-                  }
-                  if (line.startsWith("```")) {
-                    return `<pre class="bg-muted p-4 rounded-lg overflow-x-auto font-mono text-sm"><code>${line.slice(
-                      3
-                    )}</code></pre>`;
-                  }
-                  if (line.trim() === "") {
-                    return "<br>";
-                  }
-                  return `<p>${line}</p>`;
-                })
-                .join(""),
-            }}
-          />
+        <article className="mb-12">
+          <MarkdownRenderer content={post.content} />
         </article>
 
+        {/* Related Posts */}
+        {relatedPosts.length > 0 && (
+          <section
+            className="mb-12 pt-8 border-t border-border"
+            aria-labelledby="related-posts-heading"
+          >
+            <h2 id="related-posts-heading" className="text-2xl font-bold mb-6">
+              Related Posts
+            </h2>
+            <div className="grid gap-4">
+              {relatedPosts.map((relatedPost) => (
+                <Link
+                  key={relatedPost.slug}
+                  href={`/blog/${relatedPost.slug}`}
+                  className="p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold group-hover:text-primary transition-colors truncate">
+                        {relatedPost.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        <time dateTime={relatedPost.date}>
+                          {formatDate(relatedPost.date)}
+                        </time>{" "}
+                        • {relatedPost.readTime}
+                      </p>
+                    </div>
+                    <ArrowRight
+                      className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Footer */}
-        <footer className="mt-12 pt-8 border-t border-border">
+        <footer className="pt-8 border-t border-border">
           <div className="flex items-center justify-between">
             <div className="text-sm text-muted-foreground">
-              Written by Vasu Jain
+              Written by {post.frontmatter.author || "Vasu Jain"}
             </div>
             <div className="flex items-center space-x-4">
               <a
@@ -244,6 +169,7 @@ export default async function BlogPostPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -252,8 +178,9 @@ export default async function BlogPostPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="LinkedIn"
               >
-                <ExternalLink className="h-5 w-5" />
+                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>

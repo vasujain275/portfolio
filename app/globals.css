@@ -129,28 +129,152 @@
   .terminal {
     @apply bg-card border border-border rounded-lg p-4 font-mono text-sm;
   }
-  
+
   .code-block {
     @apply bg-muted rounded-md p-4 overflow-x-auto;
   }
-  
+
   .typing-animation {
     @apply border-r-2 border-primary animate-pulse;
   }
-  
+
   .skill-bar {
     @apply bg-muted rounded-full h-2 overflow-hidden;
   }
-  
+
   .skill-progress {
     @apply bg-gradient-to-r from-primary to-secondary h-full transition-all duration-500;
   }
-  
+
   .project-card {
     @apply bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/50;
   }
-  
+
   .tech-badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground;
   }
+}
+
+/* Syntax highlighting styles - Rose Pine theme */
+
+/* Light mode (default) */
+.hljs {
+  background: #f2e9e1 !important;
+  color: #575279 !important;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #b4637a !important; /* Rose - light mode */
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type {
+  color: #ea9d34 !important; /* Gold - light mode */
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #9893a5 !important; /* Muted - light mode */
+}
+
+.hljs-number,
+.hljs-regexp,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #d7827e !important; /* Rose lighter - light mode */
+}
+
+.hljs-function,
+.hljs-selector-id {
+  color: #56949f !important; /* Foam - light mode */
+}
+
+.hljs-variable,
+.hljs-params,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-class {
+  color: #907aa9 !important; /* Iris - light mode */
+}
+
+.hljs-addition {
+  color: #56949f !important; /* Foam - light mode */
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Dark mode */
+.dark .hljs {
+  background: #26233a !important;
+  color: #e0def4 !important;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-built_in,
+.dark .hljs-name,
+.dark .hljs-tag {
+  color: #eb6f92 !important; /* Rose - dark mode */
+}
+
+.dark .hljs-string,
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-attribute,
+.dark .hljs-literal,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable,
+.dark .hljs-type {
+  color: #f6c177 !important; /* Gold - dark mode */
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote,
+.dark .hljs-deletion {
+  color: #6e6a86 !important; /* Muted - dark mode */
+}
+
+.dark .hljs-number,
+.dark .hljs-regexp,
+.dark .hljs-selector-attr,
+.dark .hljs-selector-pseudo {
+  color: #ebbcba !important; /* Rose lighter - dark mode */
+}
+
+.dark .hljs-function,
+.dark .hljs-selector-id {
+  color: #9ccfd8 !important; /* Foam - dark mode */
+}
+
+.dark .hljs-variable,
+.dark .hljs-params,
+.dark .hljs-symbol,
+.dark .hljs-bullet,
+.dark .hljs-link,
+.dark .hljs-meta,
+.dark .hljs-selector-class {
+  color: #c4a7e7 !important; /* Iris - dark mode */
+}
+
+.dark .hljs-addition {
+  color: #9ccfd8 !important; /* Foam - dark mode */
 }
