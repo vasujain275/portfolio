@@ -51,10 +51,11 @@ export const skills: Skill[] = [
   { name: "Go", category: "languages", proficiency: 85, icon: "SiGo" },
   { name: "Python", category: "languages", proficiency: 90, icon: "SiPython" },
   { name: "TypeScript", category: "languages", proficiency: 85, icon: "SiTypescript" },
-  { name: "SQL", category: "languages", proficiency: 80, icon: "SiMysql" },
+  { name: "SQL", category: "languages", proficiency: 80, icon: "SiPostgresql" },
 
   // Frameworks (Backend)
   { name: "Spring Boot", category: "backend", proficiency: 90, icon: "SiSpringboot" },
+  { name: "Express.js", category: "backend", proficiency: 85, icon: "SiExpress" },
   { name: "FastAPI", category: "backend", proficiency: 85, icon: "SiFastapi" },
   { name: "Gin", category: "backend", proficiency: 80, icon: "SiGin" },
 
@@ -80,15 +81,18 @@ export const skills: Skill[] = [
   // Databases
   { name: "PostgreSQL", category: "database", proficiency: 85, icon: "SiPostgresql" },
   { name: "MySQL", category: "database", proficiency: 85, icon: "SiMysql" },
+  { name: "SQLite", category: "database", proficiency: 80, icon: "SiSqlite" },
   { name: "MongoDB", category: "database", proficiency: 80, icon: "SiMongodb" },
+  { name: "Neo4j", category: "database", proficiency: 70, icon: "SiNeo4j" },
   { name: "Redis", category: "database", proficiency: 75, icon: "SiRedis" },
   { name: "Qdrant", category: "database", proficiency: 70, icon: "SiElasticsearch" },
 
   // Tools
   { name: "Linux", category: "tools", proficiency: 90, icon: "SiLinux" },
   { name: "Neovim", category: "tools", proficiency: 85, icon: "SiNeovim" },
+  { name: "Zed", category: "tools", proficiency: 80, icon: "SiZedindustries" },
   { name: "Git", category: "tools", proficiency: 90, icon: "SiGit" },
-  { name: "Postman", category: "tools", proficiency: 85, icon: "SiPostman" },
+  { name: "Bruno", category: "tools", proficiency: 85, icon: "SiBruno" },
 ];
 
 export const getSkillsByCategory = (category: string) => {

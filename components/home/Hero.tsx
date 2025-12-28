@@ -184,13 +184,17 @@ export function Hero() {
                   <span>cat skills.txt</span>
                 </div>
                 <div className="text-secondary pl-4 leading-relaxed">
-                  Backend: Java, Spring Boot, Python, FastAPI
+                  Languages: Java, Go, Python, TypeScript
                   <br />
-                  DevOps: Docker, K8s, AWS, CI/CD
+                  Backend: Spring Boot, Express.js, FastAPI, Gin
                   <br />
-                  AI: LangChain, LangGraph, RAG, OpenAI
+                  DevOps: Docker, K8s, AWS, GitHub Actions
                   <br />
-                  Frontend: React, TypeScript, shadcn/ui
+                  AI: LangChain, LangGraph, RAG
+                  <br />
+                  Databases: PostgreSQL, MongoDB, Redis, Neo4j
+                  <br />
+                  Tools: Linux, Neovim, Zed, Git, Bruno
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-primary">$</span>
@@ -200,10 +204,6 @@ export function Hero() {
                   shelfwise/
                   <br />
                   task-genie/
-                  <br />
-                  talawa-api/
-                  <br />
-                  talawa-admin/
                 </div>
               </div>
             </div>
