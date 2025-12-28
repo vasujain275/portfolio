@@ -47,7 +47,7 @@ export const experience: Experience[] = [
 
 export const skills: Skill[] = [
   // Languages
-  { name: "Java", category: "languages", proficiency: 90, icon: "SiJava" },
+  { name: "Java", category: "languages", proficiency: 90, icon: "SiOpenjdk" },
   { name: "Go", category: "languages", proficiency: 85, icon: "SiGo" },
   { name: "Python", category: "languages", proficiency: 90, icon: "SiPython" },
   { name: "TypeScript", category: "languages", proficiency: 85, icon: "SiTypescript" },
@@ -61,7 +61,7 @@ export const skills: Skill[] = [
   // Frameworks (Frontend)
   { name: "React", category: "frontend", proficiency: 85, icon: "SiReact" },
   { name: "Next.js", category: "frontend", proficiency: 80, icon: "SiNextdotjs" },
-  { name: "shadcn/ui", category: "frontend", proficiency: 85, icon: "SiShadcnui" }, // Using generic or closest
+  { name: "shadcn/ui", category: "frontend", proficiency: 85, icon: "SiShadcnui" },
   { name: "Tailwind CSS", category: "frontend", proficiency: 85, icon: "SiTailwindcss" },
 
   // AI
@@ -71,7 +71,7 @@ export const skills: Skill[] = [
   // DevOps
   { name: "Docker", category: "devops", proficiency: 90, icon: "SiDocker" },
   { name: "Kubernetes", category: "devops", proficiency: 75, icon: "SiKubernetes" },
-  { name: "AWS", category: "devops", proficiency: 70, icon: "SiAmazonaws" },
+  { name: "AWS", category: "devops", proficiency: 70, icon: "SiAmazonwebservices" },
   { name: "GitHub Actions", category: "devops", proficiency: 85, icon: "SiGithubactions" },
   { name: "Ansible", category: "devops", proficiency: 60, icon: "SiAnsible" },
   { name: "Caddy", category: "devops", proficiency: 75, icon: "SiCaddy" },
@@ -82,7 +82,7 @@ export const skills: Skill[] = [
   { name: "MySQL", category: "database", proficiency: 85, icon: "SiMysql" },
   { name: "MongoDB", category: "database", proficiency: 80, icon: "SiMongodb" },
   { name: "Redis", category: "database", proficiency: 75, icon: "SiRedis" },
-  { name: "Qdrant", category: "database", proficiency: 70, icon: "SiQdrant" },
+  { name: "Qdrant", category: "database", proficiency: 70, icon: "SiElasticsearch" },
 
   // Tools
   { name: "Linux", category: "tools", proficiency: 90, icon: "SiLinux" },
