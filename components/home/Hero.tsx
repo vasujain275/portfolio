@@ -10,7 +10,7 @@ const roles = [
   "Backend Developer",
   "DevOps Engineer",
   "AI Engineer",
-  "Full-Stack Developer"
+  "Full-Stack Developer",
 ];
 
 const stats = [
@@ -27,22 +27,25 @@ export function Hero() {
 
   useEffect(() => {
     const role = roles[currentRoleIndex];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (currentText.length < role.length) {
-          setCurrentText(role.slice(0, currentText.length + 1));
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (currentText.length < role.length) {
+            setCurrentText(role.slice(0, currentText.length + 1));
+          } else {
+            setTimeout(() => setIsDeleting(true), 2000);
+          }
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          if (currentText.length > 0) {
+            setCurrentText(currentText.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+          }
         }
-      } else {
-        if (currentText.length > 0) {
-          setCurrentText(currentText.slice(0, -1));
-        } else {
-          setIsDeleting(false);
-          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-        }
-      }
-    }, isDeleting ? 50 : 150);
+      },
+      isDeleting ? 50 : 150
+    );
 
     return () => clearTimeout(timeout);
   }, [currentText, currentRoleIndex, isDeleting]);
@@ -55,9 +58,9 @@ export function Hero() {
           <div className="space-y-10 lg:pr-12">
             <div className="space-y-8">
               {/* Profile Picture and Name */}
-              <div className="flex items-center space-x-8">
-                <div className="relative">
-                  <div className="w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden ring-4 ring-primary/20 shadow-xl">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
+                <div className="relative flex-shrink-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden ring-4 ring-primary/20 shadow-xl">
                     <Image
                       src="https://avatars.githubusercontent.com/u/69643310?v=4"
                       alt="Vasu Jain"
@@ -67,17 +70,16 @@ export function Hero() {
                       priority
                     />
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                  <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full border-4 border-background flex items-center justify-center">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full animate-pulse"></div>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-                    Hi, I'm{" "}
-                    <span className="text-primary">Vasu Jain</span>
+                <div className="space-y-3 text-center sm:text-left">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+                    Hi, I&apos;m <span className="text-primary">Vasu Jain</span>
                   </h1>
-                  <div className="text-xl lg:text-2xl text-muted-foreground">
-                    I'm a{" "}
+                  <div className="text-lg sm:text-xl lg:text-2xl text-muted-foreground">
+                    I&apos;m a{" "}
                     <span className="text-primary font-mono typing-animation">
                       {currentText}
                     </span>
@@ -86,18 +88,26 @@ export function Hero() {
               </div>
 
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                Passionate about building robust backend microservices, DevOps automation,
-                and practical GenAI applications. Currently working on secure, scalable systems
-                and exploring advanced AI orchestration patterns.
+                Passionate about building robust backend microservices, DevOps
+                automation, and practical GenAI applications. Currently working
+                on secure, scalable systems and exploring advanced AI
+                orchestration patterns.
               </p>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                  <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div
+                  key={stat.label}
+                  className="flex flex-col items-center justify-center text-center p-3 sm:p-4 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg aspect-square sm:aspect-auto"
+                >
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] sm:text-xs lg:text-sm text-muted-foreground mt-1 leading-tight">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -110,101 +120,129 @@ export function Hero() {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild className="px-8 py-3 text-lg">
-                <Link href="/contact">
-                  Get In Touch
-                </Link>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="px-8 py-3 text-lg"
+              >
+                <Link href="/contact">Get In Touch</Link>
               </Button>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-center sm:justify-start space-x-2 sm:space-x-4">
               <a
                 href="https://github.com/vasujain275"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors p-3 rounded-lg hover:bg-muted"
+                aria-label="Visit my GitHub profile"
               >
-                <Github className="h-6 w-6" />
+                <Github className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
               <a
                 href="https://linkedin.com/in/vasujain275"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors p-3 rounded-lg hover:bg-muted"
+                aria-label="Connect with me on LinkedIn"
               >
-                <Linkedin className="h-6 w-6" />
+                <Linkedin className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
               <a
                 href="mailto:vasujain275@gmail.com"
                 className="text-muted-foreground hover:text-primary transition-colors p-3 rounded-lg hover:bg-muted"
+                aria-label="Send me an email"
               >
-                <Mail className="h-6 w-6" />
+                <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
               </a>
             </div>
           </div>
 
-            {/* Right Column - Terminal/Code Demo */}
-          <div className="space-y-8 lg:pl-12">
-            <div className="terminal">
-              <div className="flex items-center space-x-2 mb-6">
+          {/* Right Column - Terminal/Code Demo */}
+          <div className="space-y-6 sm:space-y-8 lg:pl-12">
+            <div className="terminal p-4 sm:p-6 bg-card border border-border rounded-xl">
+              <div className="flex items-center space-x-2 mb-4 sm:mb-6">
                 <div className="flex space-x-1">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
                 </div>
-                <span className="text-sm text-muted-foreground">vasu@backend:~</span>
+                <span className="text-xs sm:text-sm text-muted-foreground font-mono">
+                  vasu@backend:~
+                </span>
               </div>
-              <div className="space-y-3 font-mono text-sm">
+              <div className="space-y-2 sm:space-y-3 font-mono text-xs sm:text-sm">
                 <div className="flex items-center space-x-2">
                   <span className="text-primary">$</span>
                   <span>whoami</span>
                 </div>
-                <div className="text-secondary">vasu-jain</div>
+                <div className="text-secondary pl-4">vasu-jain</div>
                 <div className="flex items-center space-x-2">
                   <span className="text-primary">$</span>
                   <span>cat skills.txt</span>
                 </div>
-                <div className="text-secondary">
-                  Backend: Java, Spring Boot, Python, FastAPI<br/>
-                  DevOps: Docker, K8s, AWS, CI/CD<br/>
-                  AI: LangChain, LangGraph, RAG, OpenAI<br/>
+                <div className="text-secondary pl-4 leading-relaxed">
+                  Backend: Java, Spring Boot, Python, FastAPI
+                  <br />
+                  DevOps: Docker, K8s, AWS, CI/CD
+                  <br />
+                  AI: LangChain, LangGraph, RAG, OpenAI
+                  <br />
                   Frontend: React, TypeScript, shadcn/ui
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-primary">$</span>
                   <span>ls projects/</span>
                 </div>
-                <div className="text-secondary">
-                  shelfwise/<br/>
-                  task-genie/<br/>
-                  talawa-api/<br/>
+                <div className="text-secondary pl-4 leading-relaxed">
+                  shelfwise/
+                  <br />
+                  task-genie/
+                  <br />
+                  talawa-api/
+                  <br />
                   talawa-admin/
                 </div>
               </div>
             </div>
 
             {/* Quick Links */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <Link
                 href="/projects/shelfwise"
-                className="flex items-center justify-between p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group"
+                className="flex items-center justify-between p-4 sm:p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
                 <div>
-                  <div className="font-semibold text-lg">ShelfWise</div>
-                  <div className="text-sm text-muted-foreground">Library System</div>
+                  <div className="font-semibold text-base sm:text-lg">
+                    ShelfWise
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    Library System
+                  </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowRight
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
+                  aria-hidden="true"
+                />
               </Link>
               <Link
                 href="/projects/task-genie"
-                className="flex items-center justify-between p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group"
+                className="flex items-center justify-between p-4 sm:p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
                 <div>
-                  <div className="font-semibold text-lg">Task Genie</div>
-                  <div className="text-sm text-muted-foreground">AI Agent Bot</div>
+                  <div className="font-semibold text-base sm:text-lg">
+                    Task Genie
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">
+                    AI Agent Bot
+                  </div>
                 </div>
-                <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <ArrowRight
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
+                  aria-hidden="true"
+                />
               </Link>
             </div>
           </div>
