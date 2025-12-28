@@ -13,9 +13,10 @@ export default function Home() {
               Backend Developer & DevOps Engineer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a CSE undergrad passionate about building robust backend microservices,
-              DevOps automation, and practical GenAI applications. Currently working on
-              secure, scalable systems and exploring advanced AI orchestration patterns.
+              I'm a CSE undergrad passionate about building robust backend
+              microservices, DevOps automation, and practical GenAI
+              applications. Currently working on secure, scalable systems and
+              exploring advanced AI orchestration patterns.
             </p>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-3">
@@ -52,7 +53,9 @@ export default function Home() {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <span className="text-sm text-muted-foreground font-mono">vasu@backend:~</span>
+              <span className="text-sm text-muted-foreground font-mono">
+                vasu@backend:~
+              </span>
             </div>
             <div className="space-y-4 font-mono text-sm">
               <div className="flex items-center space-x-3">
@@ -60,20 +63,22 @@ export default function Home() {
                 <span>cat experience.txt</span>
               </div>
               <div className="text-secondary leading-relaxed pl-6">
-                • ShelfWise (Spring Boot + React)<br/>
-                • Task Genie (AI Agent + Python)<br/>
-                • Open Source: talawa-api, talawa-admin<br/>
-                • CSE Undergrad (University)
+                • ShelfWise (Spring Boot + React)
+                <br />
+                • Task Genie (AI Agent + Python)
+                <br />
+                • Open Source: talawa-api, talawa-admin
+                <br />• CSE Undergrad (University)
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-primary font-bold">$</span>
                 <span>cat certifications.txt</span>
               </div>
               <div className="text-secondary leading-relaxed pl-6">
-                • AWS Cloud Practitioner (In Progress)<br/>
-                • AWS Developer Associate (In Progress)<br/>
-                • MLH Fellowship (Exploring)<br/>
-                • LFX Mentorship (Exploring)
+                • AWS Cloud Practitioner (In Progress)
+                <br />
+                • AWS Developer Associate (In Progress)
+                <br />
               </div>
             </div>
           </div>
